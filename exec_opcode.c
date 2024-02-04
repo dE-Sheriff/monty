@@ -6,12 +6,12 @@
 
 void exec_opcode()
 {
-	stack_t **stack = NULL;
-
+	stack_t *stack;
 	if (inputs->tok_count == 0)
 		return;
 
-	inputs->instruction->f(stack, inputs->line_number);
+	stack = NULL;
+	inputs->instruction->f(&stack, inputs->line_number);
 }
 
 /**
