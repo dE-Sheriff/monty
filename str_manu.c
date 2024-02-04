@@ -26,7 +26,7 @@ int _strcmp(char *s1, char *s2)
 
 /**
  * isnumber - checks if token is a number
- * 
+ *
 */
 int isnumber(char *s)
 {

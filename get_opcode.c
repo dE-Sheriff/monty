@@ -6,7 +6,7 @@
  * @opc: opcode passed
  * Return: pointer to the function that executes the opcode
  */
-void _get_opcodes()
+void _get_opcodes(void)
 {
 	int i;
 
@@ -31,5 +31,4 @@ void _get_opcodes()
 	}
 	strcpy(inputs->instruction->opcode, instruct[i].opcode);
 	inputs->instruction->f = instruct[i].f;
-	return;
 }

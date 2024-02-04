@@ -2,7 +2,7 @@
 
 /**
  * get_text - gets stream of text from file
- * 
+ *
 */
 
 void get_text(char *fileTitle)

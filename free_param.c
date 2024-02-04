@@ -2,14 +2,14 @@
 
 /**
  * close_input_file - closes opend file
- * 
+ *
 */
 
 void close_input_file(void)
 {
 	if (inputs->text_chunk == NULL)
 		return;
-		
+
 	fclose(inputs->text_chunk);
 	inputs->text_chunk = NULL;
 }
@@ -24,7 +24,7 @@ void free_tokens(void)
 
 	if (inputs->lines_tok == NULL)
 		return;
-	
+
 	for (i = 0; inputs->lines_tok[i]; i++)
 	{
 		free(inputs->lines_tok[i]);
@@ -42,7 +42,7 @@ void free_stack(stack_t *head)
 {
 	if (head == NULL)
 		return;
-	
+
 	if (head->next != NULL)
 		free(head->next);
 	free(head);
@@ -70,7 +70,7 @@ void free_inputs(void)
 {
 	if (inputs == NULL)
 		return;
-	
+
 	if (inputs->instruction)
 	{
 		free(inputs->instruction);

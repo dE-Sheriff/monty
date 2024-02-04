@@ -5,7 +5,7 @@
  * Return: arg_t
 */
 
-void start_arguments()
+void start_arguments(void)
 {
 	inputs = malloc(sizeof(arg_t));
 	if (inputs == NULL)
@@ -35,20 +35,16 @@ void tokenize_line(void)
 	+ 1));
 	if (linecopy == NULL)
 		malloc_err();
-	
 	strcpy(linecopy, inputs->line);
 	inputs->tok_count = 0;
-
 	token = strtok(linecopy, " \n");
 	while (token)
 	{
 		inputs->tok_count++;
 		token = strtok(NULL, " \n");
 	}
-
 	inputs->lines_tok = malloc(sizeof(char *) *
 	(inputs->tok_count + 1));
-
 	strcpy(linecopy, inputs->line);
 	token = strtok(linecopy, " \n");
 	while (token)
@@ -58,11 +54,8 @@ void tokenize_line(void)
 		if (inputs->lines_tok[x] == NULL)
 		{
 			malloc_err();
-			/* Free previously allocated memory before returning */
 			for (i = 0; i < x; i++)
-			{
-			    free(inputs->lines_tok[i]);
-			}
+				free(inputs->lines_tok[i]);
 			free(inputs->lines_tok);
 			free(linecopy);
 			return;
@@ -73,15 +66,14 @@ void tokenize_line(void)
 	}
 	inputs->lines_tok[x] = NULL;
 	free(linecopy);
-
 }
 
 void free_input(arg_t *inputs)
 {
-    if (inputs != NULL)
-    {
-        free(inputs->text_chunk);
-        free(inputs->line);
-        free(inputs);
-    }
+	if (inputs != NULL)
+	{
+		free(inputs->text_chunk);
+		free(inputs->line);
+		free(inputs);
+	}
 }

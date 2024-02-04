@@ -9,6 +9,7 @@
 #include <ctype.h>
 
 
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -64,13 +65,13 @@ typedef struct arg_s
 
 extern arg_t *inputs;
 
-void start_arguments();
+void start_arguments(void);
 void malloc_err(void);
 void text_chunk_err(char *fileTitle);
 void tokenize_line(void);
 void get_text(char *fileTitle);
 void free_input(arg_t *inputs);
-void _get_opcodes();
+void _get_opcodes(void);
 void exec_opcode(stack_t *stack);
 int isnumber(char *s);
 int _atoi(char *s);

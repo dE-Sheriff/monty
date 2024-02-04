@@ -21,10 +21,8 @@ int main(int argc, char *argv[])
 	}
 	start_arguments();
 	get_text(argv[1]);
-	
-	
 
-    while (getline(&inputs->line, &len, inputs->text_chunk) != -1)
+	while (getline(&inputs->line, &len, inputs->text_chunk) != -1)
 	{
 		tokenize_line();
 		if (inputs->tok_count > 0)

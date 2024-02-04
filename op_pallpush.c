@@ -11,7 +11,7 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	int converted_value;
-	
+
 	if (inputs->tok_count == 0 || (isnumber(inputs->lines_tok[1])))
 	{
 		free_input(inputs);
@@ -22,7 +22,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	(void) line_number;
 
-	*stack= malloc(sizeof(stack_t));
+	*stack = malloc(sizeof(stack_t));
 	if (*stack == NULL)
 		malloc_err();
 
@@ -31,11 +31,12 @@ void push(stack_t **stack, unsigned int line_number)
 	if (converted_value == 0 && inputs->lines_tok[1][0] != '0')
 	{
 		free_input(inputs);
-		fprintf(stderr, "L%d: invalid number %s\n", line_number, inputs->lines_tok[1]);
+		fprintf(stderr, "L%d: invalid number %s\n",
+		line_number, inputs->lines_tok[1]);
 		exit(EXIT_FAILURE);
 	}
-	
-	(*stack)->n = converted_value; 
+
+	(*stack)->n = converted_value;
 	if (inputs->head != NULL)
 	{
 		(*stack)->next = inputs->head;
