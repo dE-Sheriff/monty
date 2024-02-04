@@ -10,34 +10,55 @@
 
 void push(stack_t **stack, unsigned int line_number)
 {
-	unsigned int value = line_number;
-	stack_t *new_n;
+	int converted_value;
+	/*
+	 *if (inputs->tok_count == 0 || !(isnumber(inputs->lines_tok[1])))
+	 *{
+	 *	free_input(inputs);
+	 *	fprintf(stderr, "L%d: unknown instruction %s", line_number,
+	 *	inputs->lines_tok[0]);
+	 *	exit(EXIT_FAILURE);
+	 *}
+	 */
+	(void) line_number;
 
-	if (!value)
+	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "Error: *stack is NULL\n");
 		exit(EXIT_FAILURE);
 	}
 
-	new_n = malloc(sizeof(stack_t));
-	if (!new_n)
+	*stack= malloc(sizeof(stack_t));
+	if (*stack == NULL)
+		malloc_err();
+
+	(*stack)->next = (*stack)->prev = NULL;
+	converted_value = atoi(inputs->lines_tok[1]);
+	if (converted_value == 0 && inputs->lines_tok[1][0] != '0')
 	{
-		fprintf(stderr, "malloc err\n");
+		free_input(inputs);
+		fprintf(stderr, "L%d: invalid number %s\n", line_number, inputs->lines_tok[1]);
 		exit(EXIT_FAILURE);
 	}
-
-	new_n->n = value;
-
-	new_n->next = *stack;
-	*stack = new_n;
+	if (inputs->head != NULL)
+	{
+		(*stack)->next = inputs->head;
+		inputs->head->prev = *stack;
+	}
+	inputs->head = *stack;
+	inputs->stack_index++;
 }
 
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *list;
-	
+
 	(void)line_number;
-	list = *stack;
+	(void)stack;
+
+	if (inputs->head == NULL)
+		return;
+	list = inputs->head;
 	while (list)
 	{
 		printf("%d\n", list->n);

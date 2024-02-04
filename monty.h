@@ -1,11 +1,12 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define  _GNU_SOURCE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#define _POSIX_C_SOURCE 200809L
+#include <ctype.h>
 
 
 /**
@@ -38,7 +39,41 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern stack_t *global_stack;
+
+/**
+ * struct arg_s - struct to hold variables
+ * @line: read line fron input
+ * @text_chunk: the stream of text from input FILE
+ * @line_number: Keep track of current line in text_chunck
+ * @tok_count: Number of tokens
+ * @tokens: store tokens fron text_chunk
+ * 
+ * Description: holds variables implemented at various stage
+ * of the program and makes them available globally
+*/
+typedef struct arg_s
+{
+        char *line;
+        FILE *text_chunk;
+        unsigned int line_number;
+        int tok_count, stack_index;
+        char **lines_tok;
+        instruction_t *instruction;
+        stack_t *head;
+} arg_t;
+
+extern arg_t *inputs;
+
+void start_arguments();
+void malloc_err(void);
+void text_chunk_err(char *fileTitle);
+void tokenize_line(void);
+void get_text(char *fileTitle);
+void free_input(arg_t *inputs);
+void _get_opcodes();
+void exec_opcode();
+int isnumber(char *s);
+int _atoi(char *s);
 
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
