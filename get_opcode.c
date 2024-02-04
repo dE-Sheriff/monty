@@ -31,6 +31,5 @@ void _get_opcodes()
 	}
 	strcpy(inputs->instruction->opcode, instruct[i].opcode);
 	inputs->instruction->f = instruct[i].f;
-	printf("Opcode: %s\n", inputs->instruction->opcode);
 	return;
 }

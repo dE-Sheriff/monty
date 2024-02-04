@@ -4,13 +4,11 @@
  * exec_opcode - executes detected opcode
 */
 
-void exec_opcode()
+void exec_opcode(stack_t *stack)
 {
-	stack_t *stack;
 	if (inputs->tok_count == 0)
 		return;
 
-	stack = NULL;
 	inputs->instruction->f(&stack, inputs->line_number);
 }
 

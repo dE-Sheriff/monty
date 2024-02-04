@@ -12,7 +12,8 @@ arg_t *inputs = NULL;
 int main(int argc, char *argv[])
 {
 	size_t len = 0;
-	
+	stack_t *stack = NULL;
+
 	if (argc < 2 || argc > 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -20,19 +21,20 @@ int main(int argc, char *argv[])
 	}
 	start_arguments();
 	get_text(argv[1]);
+	
+	
 
     while (getline(&inputs->line, &len, inputs->text_chunk) != -1)
 	{
-		printf("Processing line %d: %s", inputs->line_number, inputs->line);
 		tokenize_line();
-		printf("Tokenized: ");
-		printf("\n");
 		if (inputs->tok_count > 0)
 		{
 			_get_opcodes();
-			exec_opcode();
+			exec_opcode(&*stack);
+			free_tokens();
 		}
 		inputs->line_number++;
 	}
+	free_all_memory();
 	return (0);
 }

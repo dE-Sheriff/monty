@@ -71,9 +71,15 @@ void tokenize_line(void);
 void get_text(char *fileTitle);
 void free_input(arg_t *inputs);
 void _get_opcodes();
-void exec_opcode();
+void exec_opcode(stack_t *stack);
 int isnumber(char *s);
 int _atoi(char *s);
+void close_input_file(void);
+void free_head();
+void free_tokens(void);
+void free_inputs(void);
+void free_stack(stack_t *head);
+void free_all_memory();
 
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);

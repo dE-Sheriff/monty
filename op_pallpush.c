@@ -11,15 +11,15 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	int converted_value;
-	/*
-	 *if (inputs->tok_count == 0 || !(isnumber(inputs->lines_tok[1])))
-	 *{
-	 *	free_input(inputs);
-	 *	fprintf(stderr, "L%d: unknown instruction %s", line_number,
-	 *	inputs->lines_tok[0]);
-	 *	exit(EXIT_FAILURE);
-	 *}
-	 */
+	
+	if (inputs->tok_count == 0 || (isnumber(inputs->lines_tok[1])))
+	{
+		free_input(inputs);
+		fprintf(stderr, "L%d: unknown instruction %s", line_number,
+		inputs->lines_tok[0]);
+		exit(EXIT_FAILURE);
+	}
+
 	(void) line_number;
 
 	*stack= malloc(sizeof(stack_t));
@@ -34,6 +34,8 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: invalid number %s\n", line_number, inputs->lines_tok[1]);
 		exit(EXIT_FAILURE);
 	}
+	
+	(*stack)->n = converted_value; 
 	if (inputs->head != NULL)
 	{
 		(*stack)->next = inputs->head;
