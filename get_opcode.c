@@ -11,9 +11,12 @@ void _get_opcodes(void)
 	int i;
 
 	instruction_t instruct[] = {
-		{"push", push},
-		{"pall", pall},
-		{NULL, NULL}
+		{"push", push},	{"pall", pall}, {"pint", pint},
+		{"pop", pop}, {"swap", swap}, {"queue", queue},
+		{"stack", stack}, {"add", add}, {"nop", nop},
+		{"sub", sub}, {"mul", mul}, {"div", _div},
+		{"mod", mod}, {"pchar", pchar}, {"pstr", pstr},
+		{"rotl", rotl}, {"rotr", rotr}, {NULL, NULL}
 	};
 	if (inputs->tok_count == 0)
 		return;
